@@ -15,6 +15,12 @@ class CreatePagesTable extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->longText('body');
+            $table->boolean('published')->default(false);
+            $table->string('meta_title');
+            $table->string('meta_description');
+            $table->string('slug');
             $table->timestamps();
         });
     }
