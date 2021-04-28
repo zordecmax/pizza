@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/blog')->name('blog');
 Route::get('/about')->name('about');
-Route::get('/contacts')->name('contacts');
+Route::view('/contacts', 'contacts')->name('contacts');
 Route::get('/article/{slug}')->name('article');
 Route::get('/page/{slug}')->name('page');;
 Route::get('/menu')->name('menu');
