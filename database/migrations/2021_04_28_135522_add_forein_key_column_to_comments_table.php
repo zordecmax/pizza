@@ -27,7 +27,7 @@ class AddForeinKeyColumnToCommentsTable extends Migration
     public function down()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->dropForeign('article_id');
+            $table->dropForeign(['article_id']);
             $table->dropColumn('article_id');
         });
     }

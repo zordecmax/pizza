@@ -29,6 +29,6 @@ class CreateArticleImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('image');
+        Schema::dropIfExists('article_images');
     }
 }

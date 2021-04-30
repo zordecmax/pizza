@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryProduct extends Migration
+class AddForeinKeyToProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateCategoryProduct extends Migration
      */
     public function up()
     {
-        Schema::create('category_product', function (Blueprint $table) {
-            $table->id();
+        Schema::table('products', function (Blueprint $table) {
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('product_id');
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
@@ -29,6 +26,9 @@ class CreateCategoryProduct extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_product');
+        Schema::table('products', function (Blueprint $table) {
+            $table->removeColumn('category_id');
+            $table->dropForeign(['category_id']);
+        });
     }
 }

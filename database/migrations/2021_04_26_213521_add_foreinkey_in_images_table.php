@@ -14,8 +14,8 @@ class AddForeinkeyInImagesTable extends Migration
     public function up()
     {
         Schema::table('article_images', function (Blueprint $table) {
-            $table->unsignedBigInteger('article_id');
-            $table->foreign('article_id')->references('id')->on('articles');
+            $table->unsignedBigInteger('article_id')->unique();
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
         });
     }
 
@@ -26,9 +26,9 @@ class AddForeinkeyInImagesTable extends Migration
      */
     public function down()
     {
-        Schema::table('image', function (Blueprint $table) {
+        Schema::table('article_images', function (Blueprint $table) {
+            $table->dropForeign(['article_id']);
             $table->dropColumn('article_id');
-            $table->dropForeign('article_id');
         });
     }
 }
