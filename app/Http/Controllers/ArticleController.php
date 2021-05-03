@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -14,7 +15,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::where('published' , 1)->with('image', 'category', 'user')->paginate(9); // Get all published articles with image, category and user
+        return view('articles', ['articles' => $articles]);
     }
 
     /**
@@ -41,12 +43,18 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Article  $article
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show($id)
     {
-        //
+        $article = Article::findOrFail($id); // Get single article
+        $comments = Comment::has('user')->where('article_id', $article->id)->with('user')->get(); // Get comments for current article with users
+        $category = $article->category; // Get article category
+        $image = $article->image; // Get article image
+        $user = $article->user; // Get article author
+        $tags = $article->tags; // Get article tags
+        return view('article',['article' => $article, 'comments' => $comments, 'category' => $category, 'image' => $image, 'user' => $user, 'tags' => $tags]);
     }
 
     /**

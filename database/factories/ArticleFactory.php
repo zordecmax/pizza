@@ -3,7 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class ArticleFactory extends Factory
 {
@@ -21,17 +23,17 @@ class ArticleFactory extends Factory
      */
     public function definition()
     {
+
         return [
-            'name' => $this->faker->title(),
+            'name' => $this->faker->title,
             'short_description' => $this->faker->realText(),
             'published' => 1,
             'content' => $this->faker->realText(),
-            'article_category_id' => rand(0,5),
-            'image_id' => rand(0,10),
-            'tag_id' => rand(0,10),
+            'article_category_id' => $this->faker->numberBetween(1,3),
+            'user_id' => User::factory(),// $this->faker->numberBetween(1,3),
             'meta_title' => $this->faker->title(),
             'meta_description' => $this->faker->title(),
-            'slug' => $this->faker->unique()->title(),
+            'slug' => Str::slug($this->faker->unique()->name(), '-'),
 
 
         ];

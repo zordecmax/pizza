@@ -9,6 +9,17 @@ class ArticleCategory extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'parent_id',
+        'description',
+        'meta_title',
+        'meta_description',
+        'order',
+        'image_id',
+        'slug'
+    ];
+
     public function articles() {
         return $this->hasMany(Article::class);
     }

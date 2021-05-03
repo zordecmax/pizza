@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\ArticleCategory;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class ArticleCategoryFactory extends Factory
+class TagFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = ArticleCategory::class;
+    protected $model = Tag::class;
 
     /**
      * Define the model's default state.
@@ -24,11 +24,6 @@ class ArticleCategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->title(),
-            'description' => $this->faker->realText(),
-            'meta_title' => $this->faker->title(),
-            'meta_description' => $this->faker->title(),
-            'order' => $this->faker->randomNumber(2),
-//            'slug' => Str::slug($this->faker->unique()->title(), '-'),
             'slug' => $this->faker->unique()->name(),
         ];
     }
