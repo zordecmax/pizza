@@ -23,18 +23,22 @@ class Article extends Model
     ];
 
     public function tags() {
-      return $this->belongsToMany(Tag::class);
+      return $this->belongsToMany(Tag::class, 'article_tags');
     }
 
-    public function categories() {
-        return $this->belongsTo(ArticleCategory::class);
+    public function category() {
+        return $this->belongsTo(ArticleCategory::class, 'article_category_id');
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 
     public function comments() {
         return $this->hasMany(Comment::class);
     }
 
-    public function images() {
+    public function image() {
         return $this->hasOne(ArticleImage::class);
     }
 }

@@ -9,6 +9,13 @@ class CategoryImage extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'path',
+        'size',
+        'category_id'
+    ];
+
     public function articleCategory() {
 
         return $this->belongsTo(ArticleCategory::class);
