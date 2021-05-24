@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use App\Models\Tag;
+use App\Models\ArticleCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class ArticleCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,28 +43,25 @@ class TagController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $tag = Tag::findOrFail($id); // Get tag
-        $articles = Article::where('published', 1) // Get published articles with current tag
-            ->with('tags')
-            ->whereHas('tags', function ($query) use ($tag){
-                $query->where('tag_id', $tag->id);
-            })->get();
-
-        return view('articlesByTag', ['articles' => $articles, 'tag' => $tag]);
+        $category = ArticleCategory::findOrFail($id); // Get article category by id
+        $articles = Article::with('category', 'image', 'user') // Get articles for current categor
+            ->where('article_category_id', $id)
+            ->paginate(9);
+        return view('articleCategory',['articles' => $articles, 'category' => $category]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit($id)
     {
         //
     }
@@ -72,10 +70,10 @@ class TagController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tag  $tag
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -83,10 +81,10 @@ class TagController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy($id)
     {
         //
     }
