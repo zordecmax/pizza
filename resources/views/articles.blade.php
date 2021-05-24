@@ -27,7 +27,7 @@
                     @isset($article->image->path)
                         <img class="card-img-top" src="{{ asset("images/articles/".$article->image->path) }}" alt="Card image cap">
                     @else
-                        <img class="card-img-top" src="{{ asset("images/noimg.jpg")  }}" style="height: -webkit-fill-available;">
+                        <img class="card-img-top" src="{{ asset("images/noimg.jpg")  }}">
                     @endisset
                     </a>
                 </div>

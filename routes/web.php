@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\ArticleCategoryController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,10 +32,11 @@ Auth::routes();
 
 Route::get('/blog')->name('blog');
 Route::get('/about')->name('about');
-Route::view('/contacts', 'contacts')->name('contacts');
-
+Route::view('/contacts', 'contacts')->middleware(\App\Http\Middleware\RequestLoggingMiddleware::class)->name('contacts');
+Route::post('/contacts', [ContactController::class, 'send'])->name('contacts');
+Route::get('/mail', [ContactController::class, 'send']);
 Route::get('/page/{slug}')->name('page');;
-Route::get('/menu')->name('menu');
+Route::get('/menu', [ProductController::class, 'index'])->name('menu');
 Route::get('/menu/{category}')->name('category');
 Route::get('/item/{slug}')->name('product');
 Route::get('/cart')->name('cart');

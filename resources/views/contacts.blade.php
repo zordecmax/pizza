@@ -3,24 +3,39 @@
 @section('content')
     <div class="container">
         <div class="row">
+            <div class="col-12">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-header bg-primary text-white"><i class="fa fa-envelope"></i> Contact us.
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form method="post" action="/contacts">
+                            @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name" required>
+                                <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name" name="name" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email address</label>
-                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="Enter email" required>
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea class="form-control" id="message" rows="3" required></textarea>
+                                <textarea class="form-control" id="message" rows="3" name="message" required></textarea>
+                                <input type="hidden" name="subject" value="Contact us">
                             </div>
                             <div class="mx-auto">
                                 <button type="submit" class="btn btn-primary text-right">Submit</button></div>

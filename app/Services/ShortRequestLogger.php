@@ -3,15 +3,15 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 
-class DummyRequestLogger extends AbstractRequestLogger
+class ShortRequestLogger extends AbstractRequestLogger
 {
     public function getMessage() : string
     {
-        return 'This is dummy logger, works for example purpose';
+        return 'This is short logger, works on production mode';
     }
 
     protected function extractRequestData(Request $request): array
     {
-      return ['test' => 'to show that it works!'];
+      return ['info' => $request->header('User-Agent')];
     }
 }
