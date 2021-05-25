@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,4 +41,4 @@ Route::get('/menu', [ProductController::class, 'index'])->name('menu');
 Route::get('/menu/{category}')->name('category');
 Route::get('/item/{slug}')->name('product');
 Route::get('/cart')->name('cart');
-Route::get('/cart/delivery')->name('cartDelivery');
+Route::get('/cart/done', [OrderController::class, 'create'])->name('cartDelivery');

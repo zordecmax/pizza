@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Services\OrderConfirmMailer;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    private OrderConfirmMailer $mailer;
+
+    public function __construct(OrderConfirmMailer $mailer) {
+        $this->mailer = $mailer;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +31,23 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $this->mailer->send([
+            'message' => [
+            1 => [
+                'qty' => 3,
+                'price' => 199,
+                'name' => 'Pizza de Italia'
+            ],
+            2 => [
+                'qty' => 1,
+                'price' => 99,
+                'name' => 'Pizza 4 cheases'
+            ]],
+            'email' => 'max@mail.md',
+            'name' => 'Maxim',
+            'subject' => 'Order nr 123 at 25.05.21',
+
+        ]);
     }
 
     /**

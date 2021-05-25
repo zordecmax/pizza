@@ -12,7 +12,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <a href="/articles"><h1>All products</h1></a>
+            <a href="/menu"><h1>All products</h1></a>
         </div>
     </div>
     <div class="row">
