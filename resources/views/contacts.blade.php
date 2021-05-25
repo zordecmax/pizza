@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col">
                 <div class="card">
-                    <div class="card-header bg-primary text-white"><i class="fa fa-envelope"></i> Contact us.
+                    <div class="card-header bg-danger text-white"><i class="fa fa-envelope"></i> Contact us.
                     </div>
                     <div class="card-body">
                         <form method="post" action="/contacts">
@@ -38,20 +38,20 @@
                                 <input type="hidden" name="subject" value="Contact us">
                             </div>
                             <div class="mx-auto">
-                                <button type="submit" class="btn btn-primary text-right">Submit</button></div>
+                                <button type="submit" class="btn btn-danger text-right">Submit</button></div>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-sm-4">
                 <div class="card bg-light mb-3">
-                    <div class="card-header bg-success text-white text-uppercase"><i class="fa fa-home"></i> Address</div>
+                    <div class="card-header bg-danger text-white text-uppercase"><i class="fa fa-home"></i> Address</div>
                     <div class="card-body">
-                        <p>3 rue des Champs Elysées</p>
-                        <p>75008 PARIS</p>
-                        <p>France</p>
-                        <p>Email : email@example.com</p>
-                        <p>Tel. +33 12 56 11 51 84</p>
+                        <p>Stefan Cel Mare 33</p>
+                        <p>Chisinau</p>
+                        <p>Moldova</p>
+                        <p>Email : info@pizza.com.md</p>
+                        <p>Tel. +373 XXXXXXX</p>
 
                     </div>
 

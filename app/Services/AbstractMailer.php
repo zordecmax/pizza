@@ -7,7 +7,7 @@ namespace App\Services;
 use Illuminate\Contracts\Mail\Mailer;
 use Psr\Log\LoggerInterface;
 
-abstract class AbstractMailer
+abstract class AbstractMailer implements MailerInterface
 {
     protected const DESTINATION_EMAIL = "maximgrosul@gmail.com";
 

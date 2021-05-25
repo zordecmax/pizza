@@ -39,7 +39,7 @@
                         <p class="card-text">{{ $article->short_description }}</p>
                     </div>
                     <div class="card_footer d-flex justify-content-between">
-                    <a href="/article/{{$article->id}}" class="btn btn-primary">Reed more</a>
+                    <a href="/article/{{$article->id}}" class="btn btn-danger">Reed more</a>
                         <span>
                             <small>{{$article->created_at->format('Y-m-d')}}</small>
                             <small>{{$article->user->name}}</small>

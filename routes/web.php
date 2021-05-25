@@ -32,13 +32,14 @@ Route::get('/category/{id}', [ArticleCategoryController::class, 'show'])->name('
 Auth::routes();
 
 Route::get('/blog')->name('blog');
-Route::get('/about')->name('about');
+Route::view('/about', 'about')->name('about');
+Route::view('/terms', 'terms')->name('terms');
 Route::view('/contacts', 'contacts')->middleware(\App\Http\Middleware\RequestLoggingMiddleware::class)->name('contacts');
 Route::post('/contacts', [ContactController::class, 'send'])->name('contacts');
 Route::get('/mail', [ContactController::class, 'send']);
 Route::get('/page/{slug}')->name('page');;
 Route::get('/menu', [ProductController::class, 'index'])->name('menu');
 Route::get('/menu/{category}')->name('category');
-Route::get('/item/{slug}')->name('product');
+Route::get('/item/{slug}', [ProductController::class, 'show'])->name('product');
 Route::get('/cart')->name('cart');
 Route::get('/cart/done', [OrderController::class, 'create'])->name('cartDelivery');

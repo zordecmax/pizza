@@ -1,36 +1,55 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8">
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="/images/pizza_slide_1.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/images/pizza_slide_2.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/images/pizza_slide_2.png" class="d-block w-100" alt="...">
-                    </div>
+@section('video')
+
+    <header>
+        <div class="overlay"></div>
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+            <source src="/video/pizza.mp4" type="video/mp4">
+        </video>
+        <div class="container h-100">
+            <div class="d-flex h-100 text-center align-items-center">
+                <div class="w-100 text-white text-animate">
+                    <h1 class="display-3">Best pizza in Chisinau</h1>
+                    <p class="lead mb-0">Made fresh every day from organic products</p>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
         </div>
-        <div class="col-lg-4">
-            <h2 class="text-center">Your order</h2>
-        </div>
+    </header>
 
-    </div>
+@endsection
+
+@section('content')
+<div class="container">
+{{--    <div class="row">--}}
+{{--        <div class="col-lg-8">--}}
+{{--            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">--}}
+{{--                <div class="carousel-inner">--}}
+{{--                    <div class="carousel-item active">--}}
+{{--                        <img src="/images/pizza_slide_1.png" class="d-block w-100" alt="...">--}}
+{{--                    </div>--}}
+{{--                    <div class="carousel-item">--}}
+{{--                        <img src="/images/pizza_slide_2.png" class="d-block w-100" alt="...">--}}
+{{--                    </div>--}}
+{{--                    <div class="carousel-item">--}}
+{{--                        <img src="/images/pizza_slide_2.png" class="d-block w-100" alt="...">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">--}}
+{{--                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+{{--                    <span class="sr-only">Previous</span>--}}
+{{--                </a>--}}
+{{--                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">--}}
+{{--                    <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
+{{--                    <span class="sr-only">Next</span>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="col-lg-4">--}}
+{{--            <h2 class="text-center">Your order</h2>--}}
+{{--        </div>--}}
+
+{{--    </div>--}}
 
 </div>
 
@@ -39,58 +58,58 @@
         <h2>Popular products</h2>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
             <figure class="card card-product-grid">
-                <a href="#" class="img-wrap">
+                <a href="/item/1" class="img-wrap">
                     <img src="/images/products/pizza1.jpg" width="100%">
                 </a>
                 <figcaption class="info-wrap">
-                    <a href="#" class="title">Tonno</a>
+                    <a href="#" class="title" style="color: red">Tonno</a>
                     <div class="mt-2">
                         <var class="price">95 Mdl</var> <!-- price-wrap.// -->
-                        <a href="#" class="btn btn-sm btn-outline-primary float-right">Add to cart <i class="fa fa-shopping-cart"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-danger float-right">Add to cart <i class="fa fa-shopping-cart"></i></a>
                     </div> <!-- action-wrap.end -->
                 </figcaption>
             </figure> <!-- card // -->
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
             <figure class="card card-product-grid">
-                <a href="#" class="img-wrap">
+                <a href="/item/1" class="img-wrap">
                     <img src="/images/products/pizza2.jpg" width="100%">
                 </a>
                 <figcaption class="info-wrap">
-                    <a href="#" class="title">Potato & bacon</a>
+                    <a href="#" class="title" style="color: red">Potato & bacon</a>
                     <div class="mt-2">
                         <var class="price">100 Mdl</var> <!-- price-wrap.// -->
-                        <a href="#" class="btn btn-sm btn-outline-primary float-right">Add to cart <i class="fa fa-shopping-cart"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-danger float-right">Add to cart <i class="fa fa-shopping-cart"></i></a>
                     </div> <!-- action-wrap.end -->
                 </figcaption>
             </figure> <!-- card // -->
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
             <figure class="card card-product-grid">
-                <a href="#" class="img-wrap">
+                <a href="/item/1" class="img-wrap">
                     <img src="/images/products/pizza1.jpg" width="100%">
                 </a>
                 <figcaption class="info-wrap">
-                    <a href="#" class="title">Tonno</a>
+                    <a href="#" class="title" style="color: red">Tonno</a>
                     <div class="mt-2">
                         <var class="price">95 Mdl</var> <!-- price-wrap.// -->
-                        <a href="#" class="btn btn-sm btn-outline-primary float-right">Add to cart <i class="fa fa-shopping-cart"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-danger float-right">Add to cart <i class="fa fa-shopping-cart"></i></a>
                     </div> <!-- action-wrap.end -->
                 </figcaption>
             </figure> <!-- card // -->
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
             <figure class="card card-product-grid">
-                <a href="#" class="img-wrap">
+                <a href="/item/1" class="img-wrap">
                     <img src="/images/products/pizza2.jpg" width="100%">
                 </a>
                 <figcaption class="info-wrap">
-                    <a href="#" class="title">Potato & bacon</a>
+                    <a href="#" class="title" style="color: red">Potato & bacon</a>
                     <div class="mt-2">
                         <var class="price">100 Mdl</var> <!-- price-wrap.// -->
-                        <a href="#" class="btn btn-sm btn-outline-primary float-right">Add to cart <i class="fa fa-shopping-cart"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-danger float-right">Add to cart <i class="fa fa-shopping-cart"></i></a>
                     </div> <!-- action-wrap.end -->
                 </figcaption>
             </figure> <!-- card // -->
@@ -102,7 +121,7 @@
 
 <div class="container pt-4">
     <div class="row pb-4">
-        <h2>Lat articles</h2>
+        <h2>Last articles</h2>
     </div>
         <div class="row">
             @foreach($lastArticles as $article)
@@ -125,7 +144,7 @@
                                 <p class="card-text">{{ $article->short_description }}</p>
                             </div>
                             <div class="card_footer d-flex justify-content-between">
-                                <a href="/article/{{$article->id}}" class="btn btn-primary">Reed more</a>
+                                <a href="/article/{{$article->id}}" class="btn btn-danger">Reed more</a>
                                 <span>
                             <small>{{$article->created_at->format('Y-m-d')}}</small>
                             <small>{{$article->user->name}}</small>
@@ -137,7 +156,36 @@
             @endforeach
         </div>
 </div>
-<div class="container">
+<div class="container pt-4">
+    <div class="row">
+        <h2>Our partners</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm">
+                <img class="bd-placeholder-img card-img-top" src="/images/partners/baneasa.jpeg" width="100%">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm">
+                <img class="bd-placeholder-img card-img-top" src="/images/partners/floris.jpeg" width="100%">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm">
+                <img class="bd-placeholder-img card-img-top" src="/images/partners/meet.jpeg" width="100%">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm">
+                <img class="bd-placeholder-img card-img-top" src="/images/partners/vita.jpeg" width="100%">
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div class="container pt-4">
     <div class="row">
         <h2>Contact us</h2>
     </div>
@@ -158,7 +206,7 @@
             <textarea class="form-control" id="inputMessage" name="message"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Send</button>
+        <button type="submit" class="btn btn-danger">Send</button>
     </form>
 </div>
 </div>
