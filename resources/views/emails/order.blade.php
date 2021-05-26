@@ -5,7 +5,7 @@
     <br>
     <strong>User email:</strong> {{ $email }}
     <br>
-    <strong>Message:</strong>  {{ $content }}
+    <strong>Message:</strong>  {{ print_r($content) }}
     <br>
 
 </body>

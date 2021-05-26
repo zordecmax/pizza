@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\ContactUsMailer;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Mail\Mailer;
-use Illuminate\Mail\Message;
 
 class ContactController extends Controller
 {
@@ -25,22 +23,14 @@ class ContactController extends Controller
 
     public function send(Request $request) {
 
-//        \Mail::raw('test', function (Message $message) {
-//            $message->to('test@test.md');
-//            $message->subject('testing mailing');
-//        });
-//
-//        $this->mailer->send(
-//            'emails.test',
-//            ['content' => $request->input('message'), 'email' => $request->input('email')],
-//            function (Message $message) use ($request){
-//            $message->to('test@test.md');
-//            $message->subject('testing mailing');
-//        });
+        $this->mailer->send($request->validate([
+            'subject' => 'required',
+            'name' => 'required|max:100',
+            'email' => 'required|max:255|email:rfc,dns',
+            'message' => 'required|max:1000',
+        ]));
 
-        $this->mailer->send($request->all());  //TODO validated
-
-        return redirect( '/');
+        return redirect( '/contacts');
     }
 
 }

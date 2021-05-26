@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\ArticleCategoryController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,12 +32,14 @@ Route::get('/category/{id}', [ArticleCategoryController::class, 'show'])->name('
 Auth::routes();
 
 Route::get('/blog')->name('blog');
-Route::get('/about')->name('about');
-Route::view('/contacts', 'contacts')->name('contacts');
-
+Route::view('/about', 'about')->name('about');
+Route::view('/terms', 'terms')->name('terms');
+Route::view('/contacts', 'contacts')->middleware(\App\Http\Middleware\RequestLoggingMiddleware::class)->name('contacts');
+Route::post('/contacts', [ContactController::class, 'send'])->name('contacts');
+Route::get('/mail', [ContactController::class, 'send']);
 Route::get('/page/{slug}')->name('page');;
-Route::get('/menu')->name('menu');
+Route::get('/menu', [ProductController::class, 'index'])->name('menu');
 Route::get('/menu/{category}')->name('category');
-Route::get('/item/{slug}')->name('product');
+Route::get('/item/{slug}', [ProductController::class, 'show'])->name('product');
 Route::get('/cart')->name('cart');
-Route::get('/cart/delivery')->name('cartDelivery');
+Route::get('/cart/done', [OrderController::class, 'create'])->name('cartDelivery');

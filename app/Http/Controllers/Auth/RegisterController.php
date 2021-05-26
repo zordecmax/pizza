@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Services\UserRegisterMailer;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -31,14 +32,17 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    private UserRegisterMailer $mailer;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRegisterMailer $mailer)
     {
         $this->middleware('guest');
+        $this->mailer = $mailer;
     }
 
     /**
@@ -64,6 +68,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $this->mailer->send([
+            'name' => $data['name'],
+            'email' => $data['email']
+        ]);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
