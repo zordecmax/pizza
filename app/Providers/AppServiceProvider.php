@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Services\DebugResponseLogger;
 use App\Services\FullRequestLogger;
+use App\Services\ResponseLoggerInterface;
 use App\Services\ShortRequestLogger;
 use App\Services\RequestLoggerInterface;
+use Illuminate\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Psr\Log\LoggerInterface;
@@ -27,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
                 $logger = new ShortRequestLogger($this->app->make(LoggerInterface::class));
             }
             return $logger;
+        });
+        $this->app->bind(ResponseLoggerInterface::class, function (){
+            return new DebugResponseLogger($this->app->make(LoggerInterface::class),
+                $this->app->make(Dispatcher::class));
         });
     }
 

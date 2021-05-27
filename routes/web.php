@@ -30,11 +30,16 @@ Route::get('/category/{id}', [ArticleCategoryController::class, 'show'])->name('
 
 
 Auth::routes();
+Route::get('/contacts', ['uses' => function () {
+    return view('contacts');
+}, 'middleware' => \App\Http\Middleware\LoggingMiddleware::class]);
+
+
 
 Route::get('/blog')->name('blog');
 Route::view('/about', 'about')->name('about');
 Route::view('/terms', 'terms')->name('terms');
-Route::view('/contacts', 'contacts')->middleware(\App\Http\Middleware\RequestLoggingMiddleware::class)->name('contacts');
+//Route::view('/contacts', 'contacts')->middleware(\App\Http\Middleware\LoggingMiddleware::class)->name('contacts');
 Route::post('/contacts', [ContactController::class, 'send'])->name('contacts');
 Route::get('/mail', [ContactController::class, 'send']);
 Route::get('/page/{slug}')->name('page');;

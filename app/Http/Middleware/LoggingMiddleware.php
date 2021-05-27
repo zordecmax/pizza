@@ -4,15 +4,18 @@ namespace App\Http\Middleware;
 
 
 use App\Services\RequestLoggerInterface;
+use App\Services\ResponseLoggerInterface;
 use Closure;
 
-class RequestLoggingMiddleware
+class LoggingMiddleware
 {
     private RequestLoggerInterface $requestLogger;
+    private ResponseLoggerInterface $responseLogger;
 
-    public function __construct(RequestLoggerInterface $requestLogger)
+    public function __construct(RequestLoggerInterface $requestLogger, ResponseLoggerInterface $responseLogger)
     {
         $this->requestLogger = $requestLogger;
+        $this->responseLogger = $responseLogger;
     }
 
     /**
@@ -27,6 +30,8 @@ class RequestLoggingMiddleware
         $this->requestLogger->logRequest($request);
 
         $response = $next($request);
+
+        $this->responseLogger->logResponse($response);
 
         return $response;
     }
