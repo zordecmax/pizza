@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Event\ResponseSent;
 use Symfony\Component\HttpFoundation\Response;

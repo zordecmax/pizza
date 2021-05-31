@@ -20,14 +20,12 @@ class ResponseProcessingListener
         $this->cache = $cache;
     }
 
-
-    public function handle(ResponseSent $event) : void
+    public function handle(ResponseSent $event): void
     {
         $value = $this->cache->get('statuses', []);
         $code = $event->code;
 
         $value[$code] = ($value[$code] ?? 0) + 1;
-
-        $this->cache->set('statuses' , $value);
+        $this->cache->set('statuses', $value);
     }
 }

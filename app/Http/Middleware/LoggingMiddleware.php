@@ -2,10 +2,11 @@
 
 namespace App\Http\Middleware;
 
-
 use App\Services\RequestLoggerInterface;
 use App\Services\ResponseLoggerInterface;
 use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class LoggingMiddleware
 {
@@ -34,5 +35,14 @@ class LoggingMiddleware
         $this->responseLogger->logResponse($response);
 
         return $response;
+    }
+
+    public function terminate($request, $response)
+    {
+        \Log::alert('Executed after response!', [
+            'date' => date(DATE_ATOM),
+                'isRequest' => $request instanceof Request,
+                'isResponse' => $request instanceof Response,
+            ]);
     }
 }
