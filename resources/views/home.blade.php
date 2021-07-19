@@ -191,26 +191,29 @@
     <div class="row">
         <h2>Contact us</h2>
     </div>
-    <form>
+    <form method="post" action="/contacts">
+        @csrf
+
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputName">Name</label>
-                <input type="text" class="form-control" id="inputName" name="name">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail">Email</label>
-                <input type="email" class="form-control" id="inputEmail" name="email">
+                <input type="email" class="form-control" id="inputEmail" name="email" value="{{ old('email') }}" placeholder="Enter email" required>
             </div>
 
         </div>
         <div class="form-group">
             <label for="inputMessage">Your message</label>
-            <textarea class="form-control" id="inputMessage" name="message"></textarea>
+            <textarea class="form-control" id="inputMessage" name="message">{{ old('message') }}</textarea>
+            <input type="hidden" name="subject" value="Contact us">
+            <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
         </div>
 
         <button type="submit" class="btn btn-danger">Send</button>
     </form>
-</div>
 </div>
 {{--<div class="container">--}}
 {{--    <div class="row justify-content-center">--}}
