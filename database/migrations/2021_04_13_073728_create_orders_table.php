@@ -15,11 +15,11 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['new', 'done', 'canceled']);
+            $table->enum('status', ['new', 'done', 'canceled'])->default('new');
             $table->time('delivered');
-            $table->float('bill'. 2);
-            $table->unsignedBigInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->float('bill' . 2);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

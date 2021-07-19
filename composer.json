@@ -6,10 +6,13 @@
     "license": "MIT",
     "require": {
         "php": "^7.4|^8.0",
+        "algolia/algoliasearch-client-php": "^3.0",
+        "darkaonline/l5-swagger": "^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
+        "laravel/scout": "^9.2",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2"
     },
@@ -22,7 +25,8 @@
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3",
-        "squizlabs/php_codesniffer": "*"
+        "squizlabs/php_codesniffer": "*",
+        "wulfheart/pretty_routes": "^0.3.0"
     },
     "autoload": {
         "psr-4": {

@@ -15,49 +15,41 @@
             <aside class="col-md-6">
                 <article class="gallery-wrap">
                     <div class="img-big-wrap">
-                        <a href="#"><img src="/images/products/pizza1.jpg" width="100%"></a>
+                        <a href="#"><img src="{{$product->image}}" width="100%"></a>
                     </div> <!-- img-big-wrap.// -->
-                    <div class="thumbs-wrap">
-                        <a href="#" class="item-thumb"> <img src="/images/products/pizza1.jpg" width="100%"></a>
-                        <a href="#" class="item-thumb"> <img src="/images/products/pizza1.jpg" width="100%"></a>
-                        <a href="#" class="item-thumb"> <img src="/images/products/pizza1.jpg" width="100%"></a>
-                        <a href="#" class="item-thumb"> <img src="/images/products/pizza1.jpg" width="100%"></a>
-                    </div> <!-- thumbs-wrap.// -->
+{{--                    <div class="thumbs-wrap">--}}
+{{--                        <a href="#" class="item-thumb"> <img src="/images/products/pizza1.jpg" width="100%"></a>--}}
+{{--                        <a href="#" class="item-thumb"> <img src="/images/products/pizza1.jpg" width="100%"></a>--}}
+{{--                        <a href="#" class="item-thumb"> <img src="/images/products/pizza1.jpg" width="100%"></a>--}}
+{{--                        <a href="#" class="item-thumb"> <img src="/images/products/pizza1.jpg" width="100%"></a>--}}
+{{--                    </div> <!-- thumbs-wrap.// -->--}}
                 </article> <!-- gallery-wrap .end// -->
             </aside>
             <main class="col-md-6 border-left p-3">
                 <article class="content-body">
 
-                    <h2 class="title" style="color: red">Pizza de Italia</h2>
+                    <h2 class="title" style="color: red">{{$product->name}}</h2>
 
-                    <div class="mb-3">
-                        <var class="price h4">120 Mdl</var>
+                    <div class="mb-3 row ">
+                        <div class="col d-flex align-self-center">
+                            <span class="price h4 m-0"><strong>{{$product->price}} Mdl</strong></span>
+                        </div>
+                        <div class="col text-right">
+                            <add-to-cart-component id="{{$product->id}}" price="{{$product->price}}" name="{{$product->name}}"></add-to-cart-component>
+                        </div>
                     </div>
 
-                    <p>Тесто, соус томатный, соус BBQ, соус Табаско, базилик, сыр Моцарелла, мясо куриное копченное, бекон, говяжьи тефтельки, колбаски Кабанос, паприка копченная.</p>
-
-                    <hr>
                     <div class="row">
-                        <div class="form-group col-md flex-grow-0">
-                            <div class="input-group mb-3 input-spinner">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-light" type="button" id="button-plus"> + </button>
-                                </div>
-                                <input type="text" class="form-control" value="1">
-                                <div class="input-group-append">
-                                    <button class="btn btn-light" type="button" id="button-minus"> − </button>
-                                </div>
-                            </div>
-                        </div> <!-- col.// -->
-                        <div class="form-group col-md">
-                        <a href="#" class="btn  btn-danger"> Buy now </a>
-                            <a href="#" class="btn  btn-outline-danger"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+                        <div class="col">
+                            <p>{{$product->description}}</p>
+                        </div>
+                    </div>
 
-                        </div> <!-- col.// -->
-                    </div> <!-- row.// -->
-                </article> <!-- product-info-aside .// -->
-            </main> <!-- col.// -->
-        </div> <!-- row.// -->
+
+
+                </article>
+            </main>
+        </div>
     </div>
 </div>
 

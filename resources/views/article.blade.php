@@ -15,7 +15,7 @@
             <h1> {{ $article->name }}</h1>
         </div>
         <div class="col-12 d-flex justify-content-between">
-            <p>Category <a href="/category/{{$category->id}}">{{ $category->name }}</a></p>
+            <p>Category <a href="/article-category/{{$category->id}}">{{ $category->name }}</a></p>
             <p>Author <a href="#">{{ $user->name }}</a></p>
         </div>
     </div>

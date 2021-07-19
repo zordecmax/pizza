@@ -1,3 +1,7 @@
+body{
+    font-size: 1em;
+}
+
 .chip {
     display: inline-block;
     height: 32px;
@@ -143,6 +147,26 @@ header .overlay {
     font-size: 10 rem!important;
 }
 
+.searchResultsShow {
+    /*display: none;*/
+    z-index: 999;
+    position: absolute;
+    background-color: white;
+    padding-right: 20px;
+}
+.searchResultsHide {
+    display: none;
+    z-index: 999;
+    position: absolute;
+    background-color: white;
+    padding-right: 20px;
+}
+.search-results:hover {
+    z-index: 999;
+    position: absolute;
+    background-color: white;
+}
+
 @keyframes animate {
     0% {
         background-position: 0 100%;
@@ -152,6 +176,15 @@ header .overlay {
     }
     100% {
         background-position: 0 100%;
+    }
+}
+
+.slider-track {
+    transition: .2s;
+}
+@media only screen and (max-width: 600px) {
+    footer {
+        position: inherit!important;
     }
 }
 /*@media (pointer: coarse) and (hover: none) {*/

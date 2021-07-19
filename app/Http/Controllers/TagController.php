@@ -50,7 +50,7 @@ class TagController extends Controller
         $tag = Tag::findOrFail($id); // Get tag
         $articles = Article::where('published', 1) // Get published articles with current tag
             ->with('tags')
-            ->whereHas('tags', function ($query) use ($tag){
+            ->whereHas('tags', function ($query) use ($tag) {
                 $query->where('tag_id', $tag->id);
             })->get();
 
