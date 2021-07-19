@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-12 d-flex justify-content-between">
             <span><a href="/menu"><h1 style="color: red">
-                        @if($category)
+                        @if(isset($category))
                         {{$category->name}}
                         @else
                         All products

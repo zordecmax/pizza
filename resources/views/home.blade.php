@@ -10,7 +10,7 @@
         <div class="container h-100">
             <div class="d-flex h-100 text-center align-items-center">
                 <div class="w-100 text-white text-animate">
-                    <h1 class="display-3">Best pizza in Chisinau</h1>
+                    <h1 class="display-3">Best pizza</h1>
                     <p class="lead mb-0">Made fresh every day from organic products</p>
                 </div>
             </div>
