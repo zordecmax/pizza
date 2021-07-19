@@ -47,12 +47,15 @@ class CategoryController extends Controller
      */
     public function show(Category $category, $slug)
     {
-//        $category = $category::where('slug', $slug)->with('products')->first();
         $category = $category::all()->where('slug', $slug)->load('products')->first();
-//        dd($category);
+        if(is_null($category)){
+            return abort(404);;
+        }
+
         $view = 'grid';
         $products = $category->products()->paginate(12);
-//        dd($products);
+
+
         return view('products', ['category' => $category, 'products' => $products, 'view' => $view]);
     }
 
