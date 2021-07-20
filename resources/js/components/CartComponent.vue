@@ -31,8 +31,8 @@
             <div class="text-right"><strong>Total {{ cartTotal }} Mdl</strong></div>
         </div>
         <div class="toast-footer d-flex justify-content-between">
-            <a href="/cart" class="btn btn-danger"  >Confirm order</a>
             <button class="btn btn-dark" @click.prevent="deleteAllCart" >Empty cart</button>
+            <a href="/cart" class="btn btn-danger"  >Confirm order</a>
         </div>
     </div>
     </transition>

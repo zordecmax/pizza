@@ -55,6 +55,14 @@
             enter-active-class="animate__animated animate__slideInRight"
         >
         <div v-if="cartStage === 2" class="cart__contact">
+            <div class="row">
+                <div class="col-12" v-if="errors.length">
+                    <b style="color: red">Пожалуйста исправьте указанные ошибки:</b>
+                    <ul>
+                        <li v-for="error in errors">{{ error }}</li>
+                    </ul>
+                </div>
+            </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="name">Your name:</label>
@@ -153,6 +161,7 @@
             </div>
         </div>
         </transition>
+
         <transition
             name="success"
             enter-active-class="animate__animated animate__slideInRight"
@@ -163,6 +172,21 @@
                         <p><i class="bi bi-check-lg" style="font-size: 3rem; color: red"></i></p>
                         <h1>Thank you for purchase</h1>
                         <p>In short time we will contact you</p>
+                    </div>
+                </div>
+            </div>
+        </transition>
+
+        <transition
+            name="success"
+            enter-active-class="animate__animated animate__slideInRight"
+        >
+            <div  v-if="cartStage === 5" class="cart__success">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p><i class="bi bi-x-circle-fill" style="font-size: 3rem; color: red"></i></p>
+                        <h1>Sorry your order can not be processed</h1>
+                        <p>Pleas contact us for more information</p>
                     </div>
                 </div>
             </div>
@@ -185,7 +209,8 @@ export default {
                 address: '',
                 token: null
             },
-            comment: ''
+            comment: '',
+            errors: []
 
         }
     },
@@ -234,7 +259,7 @@ export default {
 
     },
     mounted() {
-        console.log(this.minDate)
+        // console.log(this.minDate)
     },
     methods: {
         deleteCart() {
@@ -250,11 +275,23 @@ export default {
             this.$store.commit('downItemQuantity', id)
         },
         changeCartStage(newStage) {
-            this.$store.commit('changeStage', newStage)
+            // if(this.cartStage === 3){
+            //     if (!this.authUser.phone) {
+            //         this.errors.push('Требуется указать телефон.');
+            //     }
+            //     if (!this.authUser.address) {
+            //         this.errors.push('Требуется указать адресс доставки.');
+            //     }
+            //     if (!this.deliveredTime) {
+            //         this.errors.push('Требуется указать время доставки.');
+            //     }
+            // }
+            if(this.errors.length === 0 || this.cartStage === 1){
+                this.$store.commit('changeStage', newStage)
+            }
 
         },
         confirmOrder(){
-            this.$store.commit('changeStage', 4)
             axios.post('/api/order',
             {
                     delivered: this.deliveredTime,
@@ -266,11 +303,21 @@ export default {
                     phone: this.authUser.phone,
                     address: this.authUser.address,
                     comment: this.comment,
-            }, {withCredentials: true})
-            .then(function (response) {
-                console.log(response);
             })
-            this.$store.commit('deleteAllCart')
+            .then((response) => {
+                if(response.status === 200){
+                    this.changeCartStage(4)
+                    this.$store.commit('deleteAllCart')
+                } else if (response.status === 422) {
+                    alert('ok')
+                }
+                else {
+                    this.changeCartStage(5)
+                }
+                console.log(response);
+            }).catch((reason) => {
+                console.log(reason.message)
+            })
 
         }
     }

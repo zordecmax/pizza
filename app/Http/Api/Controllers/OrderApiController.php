@@ -2,6 +2,7 @@
 
 namespace App\Http\Api\Controllers;
 
+use App\Http\Requests\OrderPostRequest;
 use App\Mail\OrderSent;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
@@ -49,9 +50,23 @@ class OrderApiController extends Controller
         }
         var_dump($userId);
 
-        $dataTime = date('Y-m-d H:i:s', strtotime($request->input('delivered')));
+//        $dataTime = date('Y-m-d H:i:s', strtotime($request->input('delivered')));
+
+//        $request->validated();
+        $request->validate([
+            'delivered' => 'string',
+//            'bill2' => 'string',
+            'name' => 'string|required',
+//            'phone' => 'string',
+//            'email' => 'string',
+//            'address' => 'string',
+//            'comment' => 'string',
+//            'items' => 'string',
+//            'token' => 'string'
+        ]);
+
         $order = Order::create([
-            'delivered' => $dataTime,
+            'delivered' => $request->input('delivered'),
             'bill2' => $request->input('bill2'),
             'user_id' => $userId,
             'name' => $request->input('name'),

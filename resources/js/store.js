@@ -42,7 +42,7 @@ const store = new Vuex.Store({
             })
         if (itemIndex !== -1) {
             state.cart[itemIndex].qty++;
-        }
+        }{withCredentials: true}
             localStorage.setItem('cart', JSON.stringify(state.cart));
         },
         downItemQuantity(state, id){
