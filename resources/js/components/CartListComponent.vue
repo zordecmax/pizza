@@ -308,15 +308,9 @@ export default {
                 if(response.status === 200){
                     this.changeCartStage(4)
                     this.$store.commit('deleteAllCart')
-                } else if (response.status === 422) {
-                    alert('ok')
                 }
-                else {
-                    this.changeCartStage(5)
-                }
-                console.log(response);
-            }).catch((reason) => {
-                console.log(reason.message)
+            }).catch(() => {
+                this.changeCartStage(5)
             })
 
         }
