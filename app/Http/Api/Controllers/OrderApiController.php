@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use PHPUnit\Exception;
 
 class OrderApiController extends Controller
 {
@@ -56,13 +57,13 @@ class OrderApiController extends Controller
         $request->validate([
             'delivered' => 'string',
 //            'bill2' => 'string',
-            'name' => 'string|required',
-//            'phone' => 'string',
-//            'email' => 'string',
-//            'address' => 'string',
-//            'comment' => 'string',
+            'name' => 'string',
+            'phone' => 'string',
+            'email' => 'string',
+            'address' => 'string',
+            'comment' => 'string',
 //            'items' => 'string',
-//            'token' => 'string'
+            'token' => 'string'
         ]);
 
         $order = Order::create([
@@ -75,7 +76,11 @@ class OrderApiController extends Controller
             'address' => $request->input('address'),
             'comment' => $request->input('comment'),
         ]);
-        $order->save();
+        try {
+            $order->save();
+        } catch (Exception $exception) {
+            return response()->json($exception->getMessage(), 412);
+        }
 
         $productsInCart = $request->input('items');
 
