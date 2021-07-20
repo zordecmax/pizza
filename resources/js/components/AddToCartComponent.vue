@@ -1,25 +1,5 @@
 <template>
-<!--    <button  @click="addToCart" class="btn  btn-outline-danger">-->
 
-<!--    <transition-->
-<!--                name="add-to-cart"-->
-<!--                enter-active-class="animate__animated animate__heartBeat"-->
-<!--            >-->
-
-<!--                    <span v-if="clicked === false" class="text">Add to cart</span>-->
-<!--                    <i class="fas fa-shopping-cart"></i>-->
-
-<!--    </transition>-->
-<!--    <transition-->
-<!--        name="add-to-cart"-->
-<!--        enter-active-class="animate__animated animate__flash"-->
-<!--    >-->
-<!--        <span v-if="clicked === true" class="text">Added to cart</span>-->
-
-<!--        <i class="fas fa-shopping-cart"></i>-->
-
-<!--    </transition>-->
-<!--    </button>-->
     <div>
 
             <button v-if="clicked === true" @click="addToCart" class="btn  btn-danger">
@@ -69,7 +49,6 @@ export default {
             if(!this.clicked) {
                 this.changeButton();
             }
-            // this.$store.state.push(this.id);
             if(this.clicked){
                 setTimeout(this.changeButton, 1000);
             }
