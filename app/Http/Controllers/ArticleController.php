@@ -15,7 +15,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::where('published' , 1)->with('image', 'category', 'user')->paginate(9); // Get all published articles with image, category and user
+        $articles = Article::where('published', 1) // Get all published articles with image, category and user
+            ->with('image', 'category', 'user')
+            ->paginate(9);
+
         return view('articles', ['articles' => $articles]);
     }
 
@@ -54,7 +57,7 @@ class ArticleController extends Controller
         $image = $article->image; // Get article image
         $user = $article->user; // Get article author
         $tags = $article->tags; // Get article tags
-        return view('article',['article' => $article, 'comments' => $comments, 'category' => $category, 'image' => $image, 'user' => $user, 'tags' => $tags]);
+        return view('article', ['article' => $article, 'comments' => $comments, 'category' => $category, 'image' => $image, 'user' => $user, 'tags' => $tags]);
     }
 
     /**

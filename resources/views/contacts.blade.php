@@ -13,6 +13,13 @@
                         </ul>
                     </div>
                 @endif
+                    @if (\Session::has('success'))
+                        <div class="alert alert-success">
+                            <ul>
+                                <li>{!! \Session::get('success') !!}</li>
+                            </ul>
+                        </div>
+                    @endif
             </div>
         </div>
         <div class="row">
@@ -25,20 +32,21 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name" name="name" required>
+                                <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name" name="name" value="{{ old('name') }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email address</label>
-                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="Enter email" required>
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" value="{{ old('email') }}" placeholder="Enter email" required>
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea class="form-control" id="message" rows="3" name="message" required></textarea>
+                                <textarea class="form-control" id="message" rows="3" name="message"  required>{{ old('message') }}</textarea>
                                 <input type="hidden" name="subject" value="Contact us">
+                                <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
                             </div>
                             <div class="mx-auto">
-                                <button type="submit" class="btn btn-danger text-right">Submit</button></div>
+                                <button type="submit" class="btn btn-danger text-right" >Submit</button></div>
                         </form>
                     </div>
                 </div>

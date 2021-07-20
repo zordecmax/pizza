@@ -16,11 +16,13 @@ class Comment extends Model
         'article_id'
     ];
 
-    public function article() {
+    public function article()
+    {
         return $this->belongsTo(Article::class);
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(Article::class);
     }
 }

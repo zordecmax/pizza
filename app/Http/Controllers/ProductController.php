@@ -12,10 +12,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = [1,2,3,4,5,6,7,8,9];
-        return view('products',['products'=> $products]);
+//        dd($request->all()['view']);
+        $products = Product::where('published', 1)->simplePaginate(12);
+        $view = $request->all()['view'] ?? 'grid';
+        return view('products',['products'=> $products, 'view' => $view]);
     }
 
     /**
@@ -45,9 +47,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+//    public function show(Product $product)
+    public function show($id)
     {
-        return view('product');
+        $product = Product::findOrFail($id);
+        return view('product', ['product' => $product]);
     }
 
     /**

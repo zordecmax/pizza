@@ -61,6 +61,11 @@ class OrderController extends Controller
         //
     }
 
+    public function userOrders(Request $request)
+    {
+
+    }
+
     /**
      * Display the specified resource.
      *

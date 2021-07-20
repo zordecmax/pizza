@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -44,9 +45,18 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Category $category, $slug)
     {
-        //
+        $category = $category::all()->where('slug', $slug)->load('products')->first();
+        if(is_null($category)){
+            return abort(404);;
+        }
+
+        $view = 'grid';
+        $products = $category->products()->paginate(12);
+
+
+        return view('products', ['category' => $category, 'products' => $products, 'view' => $view]);
     }
 
     /**

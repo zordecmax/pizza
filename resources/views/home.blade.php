@@ -10,7 +10,7 @@
         <div class="container h-100">
             <div class="d-flex h-100 text-center align-items-center">
                 <div class="w-100 text-white text-animate">
-                    <h1 class="display-3">Best pizza in Chisinau</h1>
+                    <h1 class="display-3">Best pizza</h1>
                     <p class="lead mb-0">Made fresh every day from organic products</p>
                 </div>
             </div>
@@ -21,6 +21,11 @@
 
 @section('content')
 <div class="container">
+    <div class="row">
+        <div class="col-6">
+{{--            <alert type="success">Message</alert>--}}
+        </div>
+    </div>
 {{--    <div class="row">--}}
 {{--        <div class="col-lg-8">--}}
 {{--            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">--}}
@@ -55,70 +60,67 @@
 
 <div class="container pt-4">
     <div class="row pb-4">
-        <h2>Popular products</h2>
+        <h2>New products</h2>
     </div>
+
     <div class="row">
+        @foreach($lastProducts as $lastProduct)
         <div class="col-md-3 col-6">
             <figure class="card card-product-grid">
                 <a href="/item/1" class="img-wrap">
-                    <img src="/images/products/pizza1.jpg" width="100%">
+                    <img src="{{$lastProduct->image}}" width="100%">
                 </a>
                 <figcaption class="info-wrap">
-                    <a href="#" class="title" style="color: red">Tonno</a>
-                    <div class="mt-2">
-                        <var class="price">95 Mdl</var> <!-- price-wrap.// -->
-                        <a href="#" class="btn btn-sm btn-outline-danger float-right">Add to cart <i class="fa fa-shopping-cart"></i></a>
+                    <a href="#" class="title" style="color: red">{{$lastProduct->name}}</a>
+                    <div class="mt-2 d-flex justify-content-between">
+                        <var class="price">{{$lastProduct->price}} Mdl</var> <!-- price-wrap.// -->
+                        <add-to-cart-component id="{{$lastProduct->id}}" price="{{$lastProduct->price}}" name="{{$lastProduct->name}}"></add-to-cart-component>
+
                     </div> <!-- action-wrap.end -->
                 </figcaption>
             </figure> <!-- card // -->
         </div>
-        <div class="col-md-3 col-6">
-            <figure class="card card-product-grid">
-                <a href="/item/1" class="img-wrap">
-                    <img src="/images/products/pizza2.jpg" width="100%">
-                </a>
-                <figcaption class="info-wrap">
-                    <a href="#" class="title" style="color: red">Potato & bacon</a>
-                    <div class="mt-2">
-                        <var class="price">100 Mdl</var> <!-- price-wrap.// -->
-                        <a href="#" class="btn btn-sm btn-outline-danger float-right">Add to cart <i class="fa fa-shopping-cart"></i></a>
-                    </div> <!-- action-wrap.end -->
-                </figcaption>
-            </figure> <!-- card // -->
-        </div>
-        <div class="col-md-3 col-6">
-            <figure class="card card-product-grid">
-                <a href="/item/1" class="img-wrap">
-                    <img src="/images/products/pizza1.jpg" width="100%">
-                </a>
-                <figcaption class="info-wrap">
-                    <a href="#" class="title" style="color: red">Tonno</a>
-                    <div class="mt-2">
-                        <var class="price">95 Mdl</var> <!-- price-wrap.// -->
-                        <a href="#" class="btn btn-sm btn-outline-danger float-right">Add to cart <i class="fa fa-shopping-cart"></i></a>
-                    </div> <!-- action-wrap.end -->
-                </figcaption>
-            </figure> <!-- card // -->
-        </div>
-        <div class="col-md-3 col-6">
-            <figure class="card card-product-grid">
-                <a href="/item/1" class="img-wrap">
-                    <img src="/images/products/pizza2.jpg" width="100%">
-                </a>
-                <figcaption class="info-wrap">
-                    <a href="#" class="title" style="color: red">Potato & bacon</a>
-                    <div class="mt-2">
-                        <var class="price">100 Mdl</var> <!-- price-wrap.// -->
-                        <a href="#" class="btn btn-sm btn-outline-danger float-right">Add to cart <i class="fa fa-shopping-cart"></i></a>
-                    </div> <!-- action-wrap.end -->
-                </figcaption>
-            </figure> <!-- card // -->
-        </div>
+        @endforeach
+
     </div>
 
 </div>
 
+<div class="container pt-4">
+    <div class="row pb-4">
+        <h2>Popular products</h2>
+    </div>
+    <div class="container pt-4 slider-container overflow-hidden">
 
+    <div class="row d-flex flex-nowrap  slider-track ">
+        @foreach($popularProducts as $popularProduct)
+            <div class="col-12 col-md-3 col-6 slider-item">
+                <figure class="card card-product-grid">
+                    <a href="/item/1" class="img-wrap">
+                        <img src="{{$popularProduct->image}}" width="100%">
+                    </a>
+                    <figcaption class="info-wrap">
+                        <a href="#" class="title" style="color: red">{{$popularProduct->name}}</a>
+                        <div class="mt-2 d-flex justify-content-between">
+                            <var class="price">{{$popularProduct->price}} Mdl</var>
+                            <add-to-cart-component id="{{$popularProduct->id}}" price="{{$popularProduct->price}}" name="{{$popularProduct->name}}"></add-to-cart-component>
+
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        @endforeach
+
+    </div>
+    <div class="row ">
+        <div class="col-12 text-center">
+            <button class="btn btn-sm btn-outline-danger btn-prev">Prev</button>
+            <button class="btn btn-sm btn-outline-danger btn-next">Next</button>
+        </div>
+    </div>
+
+</div>
+</div>
 <div class="container pt-4">
     <div class="row pb-4">
         <h2>Last articles</h2>
@@ -189,26 +191,29 @@
     <div class="row">
         <h2>Contact us</h2>
     </div>
-    <form>
+    <form method="post" action="/contacts">
+        @csrf
+
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputName">Name</label>
-                <input type="text" class="form-control" id="inputName" name="name">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputEmail">Email</label>
-                <input type="email" class="form-control" id="inputEmail" name="email">
+                <input type="email" class="form-control" id="inputEmail" name="email" value="{{ old('email') }}" placeholder="Enter email" required>
             </div>
 
         </div>
         <div class="form-group">
             <label for="inputMessage">Your message</label>
-            <textarea class="form-control" id="inputMessage" name="message"></textarea>
+            <textarea class="form-control" id="inputMessage" name="message">{{ old('message') }}</textarea>
+            <input type="hidden" name="subject" value="Contact us">
+            <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
         </div>
 
         <button type="submit" class="btn btn-danger">Send</button>
     </form>
-</div>
 </div>
 {{--<div class="container">--}}
 {{--    <div class="row justify-content-center">--}}
