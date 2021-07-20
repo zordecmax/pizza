@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderSent extends Mailable
+class OrderToAdminSent extends Mailable
 {
     use Queueable;
     use SerializesModels;
@@ -33,7 +33,7 @@ class OrderSent extends Mailable
     public function build()
     {
         return $this->from('noreply@pizza.com.md')
-            ->markdown('emails.order.sent', [
+            ->markdown('emails.order.sentAdmin', [
                 'data' => $this->data,
             ]);
     }

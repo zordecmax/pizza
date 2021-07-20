@@ -16,13 +16,13 @@ class OrderPostRequest extends FormRequest
     {
         return [
             'delivered' => 'string',
-            'bill2' => 'string',
+//            'bill2' => 'string',
             'name' => 'string',
             'phone' => 'string',
             'email' => 'string',
             'address' => 'string',
             'comment' => 'string',
-            'items' => 'string',
+//            'items' => 'string',
             'token' => 'string'
         ];
     }

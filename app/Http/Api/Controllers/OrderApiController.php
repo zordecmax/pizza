@@ -5,6 +5,7 @@ namespace App\Http\Api\Controllers;
 use App\Http\Requests\OrderPostRequest;
 use App\Mail\OrderSent;
 use App\Http\Controllers\Controller;
+use App\Mail\OrderToAdminSent;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\User;
@@ -36,7 +37,7 @@ class OrderApiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderPostRequest $request)
     {
 
         $token = $request->input('token');
@@ -53,18 +54,7 @@ class OrderApiController extends Controller
 
 //        $dataTime = date('Y-m-d H:i:s', strtotime($request->input('delivered')));
 
-//        $request->validated();
-        $request->validate([
-            'delivered' => 'string',
-//            'bill2' => 'string',
-            'name' => 'string',
-            'phone' => 'string',
-            'email' => 'string',
-            'address' => 'string',
-            'comment' => 'string',
-//            'items' => 'string',
-            'token' => 'string'
-        ]);
+        $request->validated();
 
         $order = Order::create([
             'delivered' => $request->input('delivered'),
@@ -95,8 +85,8 @@ class OrderApiController extends Controller
         }
 
         Mail::to($request->input('email'))->send(new OrderSent(($request->all())));
-        Mail::to('maximgrosul@gmail.com')->send(new OrderSent(($request->all())));
-        return response()->json($request->all(), 200);
+        Mail::to(env('ADMINISTRATOR_EMAIL'))->send(new OrderToAdminSent(($request->all())));
+        return response()->json(200);
     }
 
     /**
